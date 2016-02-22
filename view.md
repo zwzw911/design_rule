@@ -29,7 +29,7 @@ $scope.loginRule={userName:{require:true, minLength:2,maxLength:40, format:regex
     </div>
   </form>
                           
-                          
+  错误信息使用**否定**语句，例如，必填字段的错误信息是：xx字段不能为空，而不是xx字段必需填写。                          
   2.1 **是否为空**。    
   通过require属性（bollean）进行判断。    
   client端只要一个错误信息就可以（"不能为空"，然后通过字符串拼接）；    
@@ -41,7 +41,7 @@ $scope.loginRule={userName:{require:true, minLength:2,maxLength:40, format:regex
   无论client，server端，错误信息需要定制。例如：密码的格式不正确，必须由字符，数字，特殊符号组成。  
   2.4 **等于（再次输入密码）**  
   client使用filter。错误信息单独定义。  
-  server使用函数。错误信息单独定义  
+  server使用函数。错误信息单独定义。  
 3. 需要把检测结果显示  
   如果是正确的，那么input加上success，并且一个勾（可选）。  
   如果检测错误，那么加error，并且一个X（可选）和errorMsg。  
