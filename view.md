@@ -1,8 +1,11 @@
 #网页设计
 ### input输入
 1. input输入分为两种情况，一种输入后进行判断（例如登录），一种是输入后存储（例如注册）
-2. 无论对于那种情况，input都需要在前端和后端进行检测输入数据是否符合标准。client端，因为使用angularjs，所以把input分成2部分：用于定义input属性（name，type）；以及定义input检测（require,minLength,maxLength,format,equalTo)  
-  userName:{value:'',blur:false,focus:true,itemType:"text",itemIcon:"fa-user",itemLabelName:"用户名",itemExist:false,valid:undefined,msg:""}
+2. 无论对于那种情况，input都需要在前端和后端进行检测输入数据是否符合标准。  
+client端，因为使用angularjs，所以把input分成2部分：用于定义input属性（name，type）；以及定义input检测（require,minLength,maxLength,format,equalTo)。格式是Object而不是Array，angularjs的ng－repeat能够处理Object。      
+**Example**:  
+userName:{value:'',blur:false,focus:true,inputType:"text",itemIcon:"fa-user",itemLabelName:"用户名",itemExist:false,valid:undefined,errorMsg:""}  
+userName:{require:true, minLength:2,maxLength:40, format:regex, equalTo:"another input name"}
   2.1 **是否为空**。    
   通过require属性（bollean）进行判断。    
   client端只要一个错误信息就可以（"不能为空"，然后通过字符串拼接）；    
