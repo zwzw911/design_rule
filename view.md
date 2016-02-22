@@ -3,9 +3,36 @@
 1. input输入分为两种情况，一种输入后进行判断（例如登录），一种是输入后存储（例如注册）
 2. 无论对于那种情况，input都需要在前端和后端进行检测输入数据是否符合标准。  
 client端，因为使用angularjs，所以把input分成2部分：用于定义input属性（name，type）；以及定义input检测（require,minLength,maxLength,format,equalTo)。格式是Object而不是Array，angularjs的ng－repeat能够处理Object。      
-**Example**:  
+**Angular Example**:  
 userName:{value:'',blur:false,focus:true,inputType:"text",itemIcon:"fa-user",itemLabelName:"用户名",itemExist:false,valid:undefined,errorMsg:""}  
-userName:{require:true, minLength:2,maxLength:40, format:regex, equalTo:"another input name"}
+userName:{require:true, minLength:2,maxLength:40, format:regex, equalTo:"another input name"}  
+**html Example**:  
+<form class="form-horizontal   col-lg-12"  >
+                            <div class="text-danger text-center" ng-show="false===login.wholeMsg.valid" ng-bind="login.wholeMsg.msg"></div>
+
+                            <div class="form-group "  ng-repeat="(loginItemKey,loginItemValue) in loginItems">
+                                <div class="col-lg-11 col-md-11 col-sm-11  " >
+                                    <label for="{{loginItemKey}}" class=" col-lg-3 col-md-3 col-sm-4  control-label text-right text-info" ng-bind="loginItemValue.itemLabelName"></label>
+                                    <div class="col-lg-9 col-md-9 col-sm-8 has-feedback " ng-class="{'has-success':true===loginItemValue.valid,'has-error':false===loginItemValue.valid}">
+                                        <div class="input-group ">
+                                            <!--<div class="input-group">-->
+                                            <span class="input-group-addon"><span class="fa {{loginItemValue.itemIcon}}"></span></span>
+
+                                            <input class="form-control " type="{{loginItemValue.itemType}}" name="{{loginItemKey}}"  ng-model="item.value"  ng-focus=inputBlurFocus(login.items[$index],false,true) ng-blur=inputBlurFocus(login.items[$index],true,false)>
+
+                                        </div>
+                                        <span class="glyphicon glyphicon-ok form-control-feedback"  ng-show="true===item.valid"></span>
+                                        <span class= "glyphicon glyphicon-remove form-control-feedback"  ng-show="false===item.valid" ></span>
+                                        <!--glyphicon glyphicon-ok-->
+                                        <!--to show server verified result-->
+                                        <div class="text-danger" ng-show="false===item.valid" ng-bind="item.msg"></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                          
+                          
   2.1 **是否为空**。    
   通过require属性（bollean）进行判断。    
   client端只要一个错误信息就可以（"不能为空"，然后通过字符串拼接）；    
