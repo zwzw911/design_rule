@@ -2,9 +2,9 @@
 ### input输入
 1. input输入分为两种情况，一种输入后进行判断（例如登录），一种是输入后存储（例如注册）
 2. 无论对于那种情况，input都需要在前端和后端进行检测输入数据是否符合标准。  
-client端，因为使用angularjs，所以把input分成2部分：用于定义input属性（name，type）；以及定义input检测（require,minLength,maxLength,equalTo。注意，**format不需要在client做，防止被人获得并查找出漏洞**)。格式是Object而不是Array，angularjs的ng－repeat能够处理Object。   
+client端，因为使用angularjs，所以把input分成2部分：用于定义input属性（name，type）；以及定义input检测（require,minLength,maxLength,equalTo。**定义在单独的文件中，以便节省controller的size（controller看起来更方便）**。注意，**format不需要在client做，防止被人获得并查找出漏洞**)。格式是Object而不是Array，angularjs的ng－repeat能够处理Object。     
 server端，和client端类似，要定义input的检测项目（require,minLength,maxLength,format,equalTo）
-**Angular Example**:  
+**Angular Example**:    
 $scope.loginItem={userName:{value:'',blur:false,focus:true,inputType:"text",itemIcon:"fa-user",itemLabelName:"用户名",itemExist:false,valid:undefined,errorMsg:""}}  
 $scope.loginRule={userName:{require:true, minLength:2,maxLength:40, format:regex, equalTo:"another input name"}}  
 **html Example**:  
